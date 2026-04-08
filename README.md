@@ -2,6 +2,7 @@
 
 ![Swift](https://img.shields.io/badge/Swift-6-orange.svg)
 ![SPM](https://img.shields.io/badge/SPM-supported-brightgreen.svg)
+![Tests](https://github.com/squeaky-nose/SwiftDependencyInjection/actions/workflows/tests.yml/badge.svg)
 ![iOS](https://img.shields.io/badge/iOS-15%2B-blue.svg)
 ![macOS](https://img.shields.io/badge/macOS-12%2B-blue.svg)
 ![tvOS](https://img.shields.io/badge/tvOS-15%2B-blue.svg)
