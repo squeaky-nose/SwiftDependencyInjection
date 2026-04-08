@@ -1,0 +1,33 @@
+name: Unit Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Swift Package Tests
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Swift version
+        run: swift --version
+
+      - name: Resolve dependencies
+        run: swift package resolve
+
+      - name: Run tests with coverage
+        run: swift test --enable-code-coverage
+
+      - name: Print coverage report
+        run: |
+          BUNDLE_PATH=$(find .build -type d -name '*.xctest' | head -n 1)
+          PROFILE_DATA=$(find .build -name '*.profdata' | head -n 1)
+          EXECUTABLE=$(find "$BUNDLE_PATH/Contents/MacOS" -type f | head -n 1)
+
+          xcrun llvm-cov report "$EXECUTABLE" \
+            -instr-profile="$PROFILE_DATA"
